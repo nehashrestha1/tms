@@ -42,13 +42,13 @@
                         <td><?php echo $data['username'] ;?></td>
                         <td><?php echo $data['email'] ;?></td>
                         <td>
-                            <a class="btn btn-primary btn-sm " href="#" role="button">Edit </a>
-                            <a class="btn btn-info btn-sm " href="#" role="button">Sow </a>
-                            <a class="btn btn-danger btn-sm " href="#" role="button">Delete </a>
+                            <a class="btn btn-primary btn-sm " href="edit.php?id= <?php echo $data['id']?>;" role="button">Edit </a>
+                            <a class="btn btn-info btn-sm " href="#" role="button">Show </a>
+                            <a class="btn btn-danger btn-sm " href="delete.php" role="button">Delete </a>
                         </td>
                     </tr>
                 <?php
-                }
+                }   
                 ?>
 
             </tbody>
