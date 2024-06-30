@@ -20,59 +20,52 @@
             <div class="col-lg-6 col-md-6">
                 <?php
 
-                
+                if (isset($_GET['id'])) {
+                    $id = $_GET['id'];
+
+                    $select = "SELECT * FROM users WHERE id='$id'";
+                    $select_result = mysqli_query($conn, $select);
+                    
+                    $select_data = mysqli_fetch_assoc($select_result);
+                }
+
+
                 if (isset($_POST['save'])) {
                     $name = $_POST['name'];
                     $username = $_POST['username'];
                     $email = $_POST['email'];
-                    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-                    if ($name != "" && $username != "" && $email != "" && $password != "") {
-
-                        // Check for duplicate email
-                        $duplicate = "SELECT * FROM users WHERE email='$email' OR username='$username'";
-                        $duplicate_result = mysqli_query($conn, $duplicate);
-                        $row = mysqli_num_rows($duplicate_result);
-
-                        if ($row == 0) { // Check if no duplicate email exists
-                            $insert = "INSERT INTO users (name, username, email, password) VALUES ('$name', '$username', '$email', '$password')";
-                            $result = mysqli_query($conn, $insert);
-                            if ($result) {
-                                echo "<div class='alert alert-success'>Data is submitted</div>";
-                                echo "<meta http-equiv=\"refresh\" content=\"2;URL=index.php\">";
-                            } else {
-                                echo "<div class='alert alert-danger'>Data is not submitted</div>";
-                                header('Refresh: 2; URL=create.php');
-                            }
+                    if ($name != "" && $username != "" && $email != "") {
+                        $insert = "UPDATE users SET name='$name', username='$username', email='$email' WHERE id ='$id'";
+                        $result = mysqli_query($conn, $insert);
+                        if ($result) {
+                            echo "<div class='alert alert-success'>Data is Updated</div>";
+                            echo "<meta http-equiv=\"refresh\" content=\"2;URL=index.php\">";
                         } else {
-                            echo "<div class='alert alert-warning'>Email or username is already exists</div>";
-                            header('Refresh: 2; URL=create.php');
+                            echo "<div class='alert alert-danger'>Data is not Updated</div>";
+                            header('Refresh: 2; URL=edit.php');
                         }
                     } else {
                         echo "<div class='alert alert-danger'>All fields are required</div>";
                     }
 
                     // Redirect after 2 seconds
-                    header('Refresh: 2; URL=create.php');
+                    header('Refresh: 2; URL=edit.php');
                 }
                 ?>
 
                 <form action="" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Name</label>
-                        <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="text" name="name" value="<?php echo $select_data['name']; ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Username</label>
-                        <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="text" name="username" value="<?php echo $select_data['username']; ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                        <input type="email" name="email" class="form-control" value="<?php echo $select_data['email']; ?>" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <button type="submit" name="save" class="btn btn-primary btn-sm">Submit</button>
                 </form>

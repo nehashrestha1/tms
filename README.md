@@ -108,4 +108,17 @@ $_GET['string'];
 $_SESSION['string'];
 
 
+Database: 
+Database Name: tms
+tables:
+1. users
+id | name | username | email | password | status | created_at | updated_at
+
+2. tasks
+   id | title | description| start_date | end_date | status | created_at | updated_at
+
+3. courses
+   id | c_name | description | price | duration  | status | created_at | updated_at
+
+
 

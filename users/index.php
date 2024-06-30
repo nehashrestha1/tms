@@ -17,6 +17,18 @@
 <section>
     <div class="container py-5">
         <a class="btn btn-primary btn-sm " href="create.php" role="button"> Add user</a>
+        <?php
+        if(isset($_GET['msg'])){
+            $msg=$_GET['msg'];
+
+            if($msg=='success'){
+                echo "<div class='alert alert-success'>Data is DELETED</div>";
+                echo "<meta http-equiv=\"refresh\" content=\"2;URL=index.php\">";
+            }
+            
+        }
+        
+        ?>
         <table class="table">
             <thead>
                 <tr>
@@ -30,8 +42,8 @@
             <tbody>
                 <?php
 
-                // $select = "SELECT * FROM users ORDER BY id DESC ";
-                $select = "SELECT * FROM users ORDER BY name ASC ";
+                $select = "SELECT * FROM users ORDER BY id DESC ";
+                // $select = "SELECT * FROM users ORDER BY name ASC ";
                 $select_result = mysqli_query($conn, $select);
                 $i=1;
                 while ($data = mysqli_fetch_array($select_result)) {
@@ -42,13 +54,13 @@
                         <td><?php echo $data['username'] ;?></td>
                         <td><?php echo $data['email'] ;?></td>
                         <td>
-                            <a class="btn btn-primary btn-sm " href="edit.php?id= <?php echo $data['id']?>;" role="button">Edit </a>
-                            <a class="btn btn-info btn-sm " href="#" role="button">Show </a>
-                            <a class="btn btn-danger btn-sm " href="delete.php" role="button">Delete </a>
+                            <a class="btn btn-primary btn-sm " href="edit.php?id=<?php echo $data['id']; ?>" role="button">Edit </a>
+                            <a class="btn btn-info btn-sm " href="show.php?id=<?php echo $data['id']; ?>" role="button">Show </a>
+                            <a class="btn btn-danger btn-sm " onclick="return confirm('Do you want to delete this data??')" href="delete.php?id=<?php echo $data['id']; ?>" role="button">Delete </a>
                         </td>
                     </tr>
                 <?php
-                }   
+                }
                 ?>
 
             </tbody>

@@ -36,7 +36,7 @@
                         if ($row == 0) { // Check if no duplicate email exists
                             $insert = "INSERT INTO users (name, username, email, password) VALUES ('$name', '$username', '$email', '$password')";
                             $result = mysqli_query($conn, $insert);
-                            if ($result) {
+                                if ($result) {
                                 echo "<div class='alert alert-success'>Data is submitted</div>";
                                 echo "<meta http-equiv=\"refresh\" content=\"2;URL=index.php\">";
                             } else {
