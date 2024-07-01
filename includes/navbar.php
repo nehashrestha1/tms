@@ -36,6 +36,9 @@
                     <li><a class="dropdown-item" href="../auth/logout.php">Logout</a></li>
                   </ul>
                 </div>
+                <div>
+                    <?= $_SESSION['username'] ?>
+                </div>
             </div>
         </div>
     </nav>

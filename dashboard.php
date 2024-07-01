@@ -1,13 +1,15 @@
 <?php require_once ('config/config.php');
-session_start();
-if(!isset($_SESSION['email'])){
 
-}
-else{
+session_start();
+if (isset($_SESSION['email'])) {
+
+} else {
     echo "<meta http-equiv=\"refresh\" content=\"0;URL=index.php?msg=error\">";
 }
 
 ?>
+
+
 
 <!doctype html>
 <html lang="en">
@@ -55,6 +57,11 @@ else{
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                     </li>
+
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
                 </ul>
                 <div class="d-flex">
                     <div class="dropdown">
@@ -62,12 +69,15 @@ else{
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Account
                         </button>
+                        
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <li><a class="dropdown-item" href="#">Profile</a></li>
                             <li><a class="dropdown-item" href="#">Settings </a></li>
                             <li><a class="dropdown-item" href="auth/logout.php">Logout</a></li>
                         </ul>
+                       
                     </div>
+                    <div class="mx-2"> <?= $_SESSION['username'] ?></div>
                 </div>
             </div>
         </div>
