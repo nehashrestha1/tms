@@ -33,7 +33,7 @@
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <li><a class="dropdown-item" href="#">Profile</a></li>
                     <li><a class="dropdown-item" href="#">Settings </a></li>
-                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                    <li><a class="dropdown-item" href="../auth/logout.php">Logout</a></li>
                   </ul>
                 </div>
             </div>

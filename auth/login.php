@@ -18,7 +18,7 @@ if (isset($_POST["login"])){
             $_SESSION["name"] = $row["name"];
             $_SESSION["email"] = $row["email"];
 
-            echo"<meta http-equiv=\"refresh\" content=\"2;URL=index.php\">";
+            echo header("<meta http-equiv=\"refresh\" content=\"2;URL=../index.php\">");
         }
         else{
              
