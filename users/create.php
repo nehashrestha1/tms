@@ -76,9 +76,9 @@
                     <button type="submit" name="save" class="btn btn-primary btn-sm">Submit</button>
                 </form>
             </div>
-            <div class="col-lg-6 col-md-6">
+            <!-- <div class="col-lg-6 col-md-6">
                 <img src="https://dummyimage.com/800x300/dddddd/fff.png&text=Responsive+Image" class="img-fluid" alt="...">
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
