@@ -74,3 +74,18 @@ CREATE TABLE IF NOT EXISTS `courses` (
   )
   ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 COMMIT;
+
+DROP TABLE IF EXISTS `files`;
+CREATE TABLE IF NOT EXISTS `files` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL,
+  `description` text NOT NULL,
+  `file_link` text NOT NULL,
+  `type`varchar(10) NOT NULL,
+  `status` int(11) DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+    PRIMARY KEY (`id`)
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+COMMIT; 

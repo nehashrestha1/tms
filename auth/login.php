@@ -12,26 +12,33 @@ if (isset($_POST['login'])) {
         // $count = mysqli_num_rows($result);
         // var_dump($count);
 
-        if ($result->num_rows === 1) {
+        if ($result) {
             $user = $result->fetch_assoc();
             // var_dump($user);
-            if (password_verify($password, $user["password"])) {
-                session_start();
-                $_SESSION['id'] = $user['id'];
-                $_SESSION['username'] = $user['username'];
-                $_SESSION['email'] = $user['email'];
+            if ($user) {
+                if (password_verify($password, $user["password"])) {
+                    session_start();
+                    $_SESSION['id'] = $user['id'];
+                    $_SESSION['username'] = $user['username'];
+                    $_SESSION['email'] = $user['email'];
 
-                echo header("Location: ../dashboard.php?msg=login_success");
+                    echo "Login successful.";
+                     header("Refresh:0 url=../dashboard.php?msg=login_success");
+                } else {
+                    echo header("Refresh:0 url=../index.php?msg=password_error");
+                }
             } else {
-                echo header("Location: ../index.php?msg=password_error");
+                echo header("Refresh:0 url=../index.php?msg=user_not_found");
             }
-
         } else {
-            echo header("Location: ../index.php?msg=login_failed");
+            echo header("Refresh:0 url=../index.php?msg=email_error");
         }
+
+
     } else {
-        echo "All fields are necessary.";
-        header('Refresh: 1; url=../index.php');
+        
+        header("Refresh:0; url=../index.php?msg=required");
     }
 }
+
 ?>
