@@ -48,6 +48,7 @@
                         echo "<td>" . $row['updated_at'] . "</td>";
                         echo "<td>";
                         echo "<a class='btn btn-warning btn-sm' href='edit.php?id=" . $row['id'] . "'>Edit</a> ";
+                        echo "<a class='btn btn-info btn-sm ' href='show.php?id=" .$row['id'] . "'>Show </a>";
                         echo "<a class='btn btn-danger btn-sm' href='delete.php?id=" . $row['id'] . "' onclick='return confirm(\"Are you sure?\");'>Delete</a>";
                         echo "</td>";
                         echo "</tr>";

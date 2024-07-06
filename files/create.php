@@ -38,13 +38,13 @@ require('../includes/navbar.php');
 
                 if($title!="" && $description!="" && $filename!=""){
                     if($filesize< 2*1024 *1024){
-                        if($ext=='jpg' || $ext=='png' || $ext=='jpeg' || $ext=='gif' || $ext=='webp'){
+                        if($ext=='jpg' || $ext=='png' || $ext=='jpeg' || $ext=='gif'){
                             if(move_uploaded_file($_FILES['dataFile']['tmp_name'],'../uploads/'.$finalname)){
                                 $insert="INSERT INTO files (title, description, file_link, type) VALUES('$title', '$description', '$finalname', '$ext')";
                                 $result= mysqli_query($conn, $insert);
                                 if($result){
                                     echo "File is submitted";
-                                    header("Refresh:2; URL=index.php");
+                                    header("Refresh:0; URL=index.php");
                                 }
                                 else{
                                     echo " File is not submitted";
